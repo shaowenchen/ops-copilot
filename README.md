@@ -208,7 +208,7 @@ python main.py \
 ### Build Docker Image
 
 ```bash
-docker build -t ops-copilot .
+docker build -t shaowenchen/ops-copilot:latest .
 ```
 
 ### Run with Environment Variables
@@ -222,21 +222,21 @@ docker run -it --rm \
   -e OPENAI_API_KEY="sk-your-key" \
   -e OPENAI_API_HOST="https://api.openai.com/v1" \
   -e OPENAI_API_MODEL="gpt-4o-mini" \
-  ops-copilot
+  shaowenchen/ops-copilot:latest
 
 # With verbose mode
 docker run -it --rm \
   -e MCP_SERVER_URL="http://your-mcp-server/mcp" \
   -e OPENAI_API_KEY="sk-your-key" \
   -e OPENAI_API_HOST="https://api.openai.com/v1" \
-  ops-copilot --verbose
+  shaowenchen/ops-copilot:latest --verbose
 
 # With custom config file (mount configs directory)
 docker run -it --rm \
   -v $(pwd)/configs:/app/configs \
   -e MCP_SERVER_URL="http://your-mcp-server/mcp" \
   -e OPENAI_API_KEY="sk-your-key" \
-  ops-copilot --config /app/configs/config.yaml
+  shaowenchen/ops-copilot:latest --config /app/configs/config.yaml
 ```
 
 ### Run with .env File
@@ -254,7 +254,7 @@ EOF
 # Run with .env file
 docker run -it --rm \
   --env-file .env \
-  ops-copilot
+  shaowenchen/ops-copilot:latest
 ```
 
 ### Run with Command Line Arguments
@@ -263,7 +263,7 @@ docker run -it --rm \
 docker run -it --rm \
   -e MCP_SERVER_URL="http://your-mcp-server/mcp" \
   -e OPENAI_API_KEY="sk-your-key" \
-  ops-copilot \
+  shaowenchen/ops-copilot:latest \
   --endpoint https://api.openai.com/v1 \
   --model gpt-4o-mini \
   --mcp-server http://your-mcp-server/mcp \
@@ -274,38 +274,25 @@ docker run -it --rm \
 
 ### Using Pre-built Images
 
-Pre-built Docker images are available on:
-- **Docker Hub**: `docker.io/<username>/ops-copilot:latest`
-- **GitHub Container Registry**: `ghcr.io/<username>/ops-copilot:latest`
+Pre-built Docker images are available on Docker Hub: `shaowenchen/ops-copilot:latest`
 
 ```bash
 # Pull and run from Docker Hub
 docker run -it --rm \
   -e MCP_SERVER_URL="http://your-mcp-server/mcp" \
   -e OPENAI_API_KEY="sk-your-key" \
-  docker.io/<username>/ops-copilot:latest
-
-# Pull and run from GitHub Container Registry
-docker run -it --rm \
-  -e MCP_SERVER_URL="http://your-mcp-server/mcp" \
-  -e OPENAI_API_KEY="sk-your-key" \
-  ghcr.io/<username>/ops-copilot:latest
+  shaowenchen/ops-copilot:latest
 ```
 
 ## CI/CD
 
-This project uses GitHub Actions to automatically build and push Docker images:
-
-- **Docker Hub**: Images are pushed on push to `main`/`master` branch and on tag creation
-- **GitHub Container Registry**: Images are pushed to `ghcr.io` on push to `main`/`master` branch
+This project uses GitHub Actions to automatically build and push Docker images to Docker Hub on push to `master` branch.
 
 ### Required Secrets
 
-For Docker Hub push, configure these secrets in GitHub repository settings:
+Configure these secrets in GitHub repository settings:
 - `DOCKERHUB_USERNAME`: Your Docker Hub username
 - `DOCKERHUB_TOKEN`: Your Docker Hub access token
-
-For GitHub Container Registry, no additional secrets are needed (uses `GITHUB_TOKEN`).
 
 ## License
 

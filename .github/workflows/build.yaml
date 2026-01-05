@@ -7,8 +7,7 @@ on:
   workflow_dispatch:
 
 env:
-  IMAGE_NAME: ops-copilot
-  REGISTRY: docker.io
+  IMAGE_NAME: shaowenchen/ops-copilot
 
 jobs:
   build:
@@ -28,15 +27,9 @@ jobs:
         id: meta
         uses: docker/metadata-action@v5
         with:
-          images: ${{ env.REGISTRY }}/${{ secrets.DOCKERHUB_USERNAME }}/${{ env.IMAGE_NAME }}
+          images: ${{ env.IMAGE_NAME }}
           tags: |
-            type=ref,event=branch
-            type=ref,event=pr
-            type=semver,pattern={{version}}
-            type=semver,pattern={{major}}.{{minor}}
-            type=semver,pattern={{major}}
-            type=sha,prefix={{branch}}-
-            type=raw,value=latest,enable={{is_default_branch}}
+            type=raw,value=latest
 
       - name: Login to DockerHub
         if: github.event_name != 'pull_request'
