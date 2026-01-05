@@ -1,0 +1,32 @@
+# Ops Copilot Configuration
+
+# MCP Server Configuration
+mcp:
+  # MCP server URL (required)
+  server_url: "http://localhost/mcp"
+  
+  # Request timeout (default: 600s)
+  timeout: "600s"  # Format: 30s, 1m, 2h, etc.
+  
+  # Authentication token (optional)
+  token: ""
+
+# OpenAI Configuration
+openai:
+  # OpenAI API endpoint (default: https://api.openai.com/v1)
+  endpoint: "https://api.openai.com/v1"
+  
+  # OpenAI API key (required)
+  api_key: ""
+  
+  # Model name (default: gpt-4o-mini)
+  model: "gpt-4o-mini"
+
+# Chat Configuration
+chat:
+  # Maximum chat history length (default: 8)
+  max_history: 8
+  
+  # Enable verbose logging (default: false)
+  verbose: false
+

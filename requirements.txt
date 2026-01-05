@@ -1,0 +1,18 @@
+# Core dependencies
+fastmcp==2.12.4
+nest-asyncio==1.6.0
+
+# HTTP client
+httpx==0.28.1
+requests==2.32.3
+
+# Configuration management
+python-dotenv>=1.0.1
+pyyaml>=6.0.0
+
+# Logging
+colorlog==6.9.0
+
+# CLI support (optional, for better output)
+rich==13.9.4
+
